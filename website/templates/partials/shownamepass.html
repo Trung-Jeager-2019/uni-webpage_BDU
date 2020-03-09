@@ -1,0 +1,6 @@
+<h4>
+  <strong>Name: </strong> {{ fullname }} &nbsp;<strong>Id:</strong> {{ username }} &nbsp;<strong>Password:</strong> {{ password }}&nbsp;
+</h4>
+{% if not button %}
+<button class="btn btn-primary pull-left" onclick="Admin.empty('addexaminee-names')" type="button">Hide student names</button><br>
+{% endif %}

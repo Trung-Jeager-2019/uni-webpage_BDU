@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div id="examreport">
+  <div class="container">
+    <div class="media">
+      <img class="media-object pull-left" src="{{ url_for('static', filename='images/logo.png') }}">
+      <div class="media-body">
+        <h1 class="media-heading">{{ exam.exam_id.rsplit(' ', 1)[0] }}</h1>
+      </div>
+    </div>
+
+    <h3 class="report-heading">Name: {{ name }}</h3>
+    <table class="table report-table">
+      <thead>
+        <tr>
+          <th>Section scores</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Listening:</td>
+          <td>{{ exam.listening }}/50</td>
+        </tr>
+        <tr>
+          <td>Structure:</td>
+          <td>{{ exam.structure }}/40</td>
+        </tr>
+        <tr>
+          <td>Reading:</td>
+          <td>{{ exam.reading }}/30</td>
+        </tr>
+        <tr>
+          <td>Writing:</td>
+          <td>{{ exam.writing }}/6</td>
+        </tr>
+      </tbody>
+    </table>
+    <h4 class="report-heading">Total score: {{ exam.total }} {{ exam.grade }}</h4>
+    <br>
+    <h4 class="report-heading">Examiner's signature:</h4>
+    <h4 class="report-heading">Date: <em>{{ taken_date }}</em></h4>
+  </div>
+</div>
+
+{% endblock %}

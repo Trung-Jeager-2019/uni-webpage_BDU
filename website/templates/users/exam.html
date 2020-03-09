@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block content %}
+
+<nav class="navbar">
+  <ul class="nav">
+    <li><a href="#">Name: {{ current_user.fullname }}</a></li>
+    <li>&nbsp;&nbsp;</li>
+    <li><a href="#" id="countdown">{{ welcome.time_string }}</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+  <div class="slide">
+    <div class="media">
+      <img class="media-object pull-left" src="{{ url_for('static', filename='images/logo.png') }}">
+      <div class="media-body">
+        <h1 class="media-heading">{{ welcome.title }}</h1>
+        <h2>{{ welcome.section }}</h2>
+      </div>
+    </div>
+
+    <p>{{ welcome.intro }}</p>
+    {% for part in welcome.parts %}
+    <ul>
+      <li>{{ part }}</li>
+    </ul>
+    {% endfor %}
+    {% for text in welcome.body %}
+    <p>{{ text }}</p>
+    {% endfor %}
+    <p><button class="btn btn-primary" onclick="Exam.start({{ welcome.time_limit }})" type="button">
+      Start the exam </button></p>
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/exam_script.js') }}"></script>
+
+<div class="container" id="exam-body">
+    <form action="/users/exam/finish" method="post">
+      <input type="hidden" id="token" name="csrf_token" value="{{ csrf_token() }}" />
+      {% for data in pages %}
+
+      <div class="well">
+        <h2>{{ data.section }}</h2>
+        <h3>{{ data.title }}</h3>
+
+        {% if data.audio %}
+        <audio id="listening" src="/static/media/{{ data.audio }}"></audio>
+        {% endif %}
+
+        {% if data.intro %}
+        {% for text in data.intro %}
+        <h4>{{ text }}</h4>
+        {% endfor %}
+        {% endif %}
+
+        {% for question in data.questions %}
+        <h3>{{ question.heading }}</h3>
+        {% for text in question.body %}
+        <h4>{{ text|safe }}</h4>
+        {% endfor %}
+
+        {% for ans in question.answers %}
+        <label class="radio-label">
+          <input type="radio" name="{{ question.object_id }}" value="{{ ans[0] }}"
+                                                              {% if answers.get(question.object_id) == ans[0] %}checked{% endif %}>
+          {{ ans[1] }}
+        </label>
+        {% if data.inline %}&nbsp;&nbsp;{% else %}<br>{% endif %}
+        {% endfor %}
+
+        {% if question.ending %}
+        <h5>{{ question.ending }}</h5>
+        {% endif %}
+        {% endfor %}
+
+        {% if data.writing %}
+        <textarea id="writingarea" name="writing" cols="80" rows="20">
+          {{ answers.get('writing', '') }}
+        </textarea><br>
+        {% endif %}
+
+      </div>
+      {% endfor %}
+
+      <p><button class="btn btn-primary pull-right" onclick="Exam.overlay()" type="button">Finish the exam</button></p>
+      <br>
+      <div id="overlay">
+        <div>
+          <h4>Are you sure you want to finish the exam?</h4>
+          <input type="submit" class="btn btn-primary exam-btn" role="button" value="Yes, I have finished">
+          <button class="btn btn-primary exam-btn" onclick="Exam.overlay()" type="button">
+            No, I have not finished yet</button>
+        </div>
+      </div>
+    </form>
+</div>
+
+{% endblock %}

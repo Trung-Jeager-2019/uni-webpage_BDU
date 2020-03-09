@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Admin{% endblock %}
+{% block content %}
+
+{% include 'partials/nav.html' %}
+{% include 'partials/messages.html' %}
+
+<script>var csrftoken = "{{ csrf_token() }}"</script>
+
+<div class="container" id="admin-page">
+  <h1>Administration</h1>
+  <h3 class="page-header">PYU Entrance Exam</h3>
+  <h4>Add examinees</h4>
+  <form class="form-inline" id="examinee-form" method="post">
+    <div class="form-group">
+      <label for="addname">Student name</label>
+      <input type="text" class="form-control" id="addexaminee" name="addname">
+      <select class="form-control" id="selectexam" name="getexam">
+        {% for (exam_id, exam_name) in exams %}
+        <option value="{{ exam_id }}">{{ exam_name }}</option>
+        {% endfor %}
+      </select>
+      <button class="btn btn-primary" onclick="Admin.addExaminee()" type="button">Add examinee</button>
+    </div>
+  </form><br>
+  <div id="addexaminee-names"></div>
+  <h4>Exam scores</h4>
+  <form class="form-inline" id="examscore-form" method="post">
+    <div class="form-group">
+      <label for="getscore">Date exam taken</label>
+      <select class="form-control" id="getexamscore" name="getscore">
+        {% for exam_date in old %}
+        <option>{{ exam_date }}</option>
+        {% endfor %}
+      </select>
+      <button class="btn btn-primary" onclick="Admin.getExamScore()" type="button">Get exam scores</button>
+    </div>
+  </form><br>
+  <div id="getscore-scores"></div>
+  <h4>Check writing</h4>
+  <div>
+    <p><button class="btn btn-primary" onclick="Admin.checkWrite()" type="button">Update</button></p>
+  </div>
+  <div id="checkwrite"></div>
+</div>
+
+<script src="{{ url_for('static', filename='js/user_script.js') }}"></script>
+
+{% endblock %}

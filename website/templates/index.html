@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+
+{% include 'partials/nav.html' %}
+{% include 'partials/carousel.html' %}
+{% include 'partials/messages.html' %}
+
+<div id="marketing">
+  <div class="container">
+    <div class="container" id="mainheading">
+      <div class="media well"><a class="pull-left" href="#"><img class="media-object img-rounded" src="/static/images/elec_logo.png"> </a>
+        <div class="media-body">
+          <blockquote class="media-heading"><p id="randomquote"></p>
+            <small id="author"><cite></cite></small>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <h3>Intensive English Program</h3>
+        <p>An intensive 180-hour course which gives you a great chance to become a lot better at English.</p>
+        <p>Ideal for students who want to study a university course in English.</p>
+        <p><a class="btn btn-primary" href="/#coursesiep" role="button">Learn more »</a></p>
+      </div>
+      <div class="col-4">
+        <h3>TESOL Certificate</h3>
+        <p>We offer 120-hour TESOL Certificate courses</p>
+        <p>The TESOL Certificate is an internationally recognized qualification for teachers of English to nonnative speakers.</p>
+        <p><a class="btn btn-primary" href="/#coursestesol" role="button">Learn more »</a></p>
+      </div>
+      <div class="col-4">
+        <h3>Intensive Thai</h3>
+        <p>We offer 60-hour intensive Thai courses.</p>
+        <p>Improve your Thai by taking the world-renowned Payap intensive Thai course.</p>
+        <p>There are 8 levels to take you from beginner to advanced in easy stages.</p>
+        <p><a class="btn btn-primary" href="/#coursesthai" role="button">Learn more »</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="aboutus">
+  <div class="container">
+    <div class="media"><a class="pull-right" href="#"><img class="media-object img-rounded" src="/static/images/payap_map.jpg" /> </a>
+      <div class="media-body">
+        <h3 class="media-heading">The Language Enhancement Center is on the second floor of the library at Payap University.</h3>
+        <p></p>
+        <h4>We offer:</h4>
+        <ul>
+          <li>Intensive English programs for students who want to study in English at university.</li>
+          <li>Intensive Thai courses.</li>
+          <li>Teacher training - TESOL certificate courses.</li>
+          <li>Entrance exams every Friday.</li>
+          <li>A self-access center, where you can improve your English in a fun and relaxed environment.</li>
+          <li>Other English courses according to your needs.</li>
+        </ul>
+      </div>
+    </div>
+    <h3 class="page-header">Entrance exam for future Payap International College students</h3>
+    <p>For students who want to study at the Payap International College, and who are not native speakers, we provide an entrance exam every Friday at 10:00 in the morning.</p>
+    <p>The exam lasts three hours and has four parts:</p>
+    <ul>
+      <li>Listening</li>
+      <li>Structure (grammar)</li>
+      <li>Reading</li>
+      <li>Writing</li>
+    </ul>
+    <p>The score you need to pass the exam depends on the course you are applying for.</p>
+    <p>Please remember that the exam starts at 10:00 am. If you are late, you will not be able to get a good score.</p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="course-info" id="coursesiep">
+    <h2 class="page-header">Courses</h2>
+    <h2 class="page-header">Intensive English Program</h2>
+    <h4>Ideal for students who want to study a university course in English</h4>
+    <h4>An intensive 180-hour course which gives you a great chance to become a lot better at English.</h4>
+    <p>There are three levels, elementary, intermediate and advanced, and it takes one semester to complete each level. Students who complete the advanced level will have learned the skills they need to successfully study in English at university level.</p>
+    <p>A TOEFL, IELTS or Payap Proficiency Test score and/or an oral interview are used to work out the applicant’s English level in order to place the student at the most beneficial level of instruction. Students are expected to attend all classes in which they are placed.</p>
+    <h4>To apply for the Intensive English Program course, <a href="/#contact-us">call us, email us</a>, or come in to our office any time from Monday to Friday 8:30 am to 4:30 pm.</h4>
+    <p>Alternatively, <a href="/static/docs/IEP_application.pdf">you can send us an application form</a>.</p>
+    <p><button class="btn btn-primary" onclick="Base.toggleDiv('iepfees')" type="button">Schedule and Fees</button></p>
+    <div class="collapse" id="iepfees">
+      {% include 'partials/courses_iep.html' %}
+    </div>
+  </div>
+  <div class="course-info" id="coursestesol">
+    <h2 class="page-header">TESOL Certificate</h2>
+    <h4>Teacher training for both native and nonnative speakers</h4>
+    <h4>The TESOL Certificate is an internationally recognized qualification for teachers of English.</h4>
+    <p>We offer 120-hour TESOL Certificate courses for English teachers. The Certificate in TESOL is a program designed for graduates with near-native proficiency in English who want to begin a teaching career. It is taught entirely in English, and provides the basic training for teaching English as a non-native language.</p>
+    <p>The program is a four-week intensive program, which covers the structure of spoken and written texts in English, contemporary approaches to language teaching and evaluation, and classroom practice.</p>
+    <h4>To apply for the TESOL Certificate course, <a href="/#contact-us">call us, email us</a>, or come in to our office any time from Monday to Friday 8:30 am to 4:30 pm.</h4>
+    <p>Alternatively, <a href="/static/docs/TESOL_application.pdf">you can send us an application form</a>.</p>
+    <p><button class="btn btn-primary" onclick="Base.toggleDiv('tesolfees')" type="button">Schedule and Fees</button></p>
+    <div class="collapse" id="tesolfees">
+      {% include 'partials/courses_tesol.html' %}
+    </div>
+  </div>
+  <div class="course-info" id="coursesthai">
+    <h2 class="page-header">Intensive Thai</h2>
+    <h4>Intensive Thai</h4>
+    <p>Each course is 60 hours long, and we provide 8 levels, from beginner to advanced.</p>
+    <h4>To apply for the intensive Thai course, <a href="/#contact-us">call us, email us</a>, or come in to our office any time from Monday to Friday 8:30 am to 4:30 pm.</h4>
+    <p>Alternatively, <a href="/static/docs/Thai_application.doc">you can send us an application form</a>.</p>
+    <p><button class="btn btn-primary" onclick="Base.toggleDiv('thaifees')" type="button">Schedule and Fees</button></p>
+    <div class="collapse" id="thaifees">
+      {% include 'partials/courses_thai.html' %}
+    </div>
+  </div>
+</div>
+<div class="container" id="smallprint">
+  <h3>Additional notes for all students</h3>
+  <h4>Overseas students</h4>
+  <ul>
+    <li>All fees must be paid in full before we can send you a letter for your visa application.</li>
+    <li>We charge 1,500 THB for postage of documentation.</li>
+    <li>The visa application process can take several weeks, so please book in advance.</li>
+  </ul>
+  <h4>Students currently in Thailand</h4>
+  <ul>
+    <li>Registration and payment are compulsory before any program commences.</li>
+    <li>Book fees are not included in the course fees but photocopies are.</li>
+    <li>No refunds are given once the semester has started except in very exceptional circumstances</li>
+  </ul>
+</div>
+
+{% include 'partials/footer.html' %}
+
+<script src="{{ url_for('static', filename='js/quotes.js') }}"></script>
+
+{% endblock %}

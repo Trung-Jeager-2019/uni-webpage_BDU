@@ -1,0 +1,19 @@
+{% if check %}
+{% for chk in check %}
+<form id="{{ chk[0] }}" method="post">
+  <div class="form-group">
+    <h4>{{ chk[1] }}</h4>
+    <textarea cols="80" rows="10">
+      {{ chk[2] }}
+    </textarea><br>
+    <label>
+      Writing score
+      <input type="text" name="{{ chk[0] }}">
+    </label>
+    <button class="btn btn-primary" onclick="Admin.sendWriteScore({{ chk[0] }})" type="button">Submit writing score</button>
+  </div>
+</form>
+{% endfor %}
+{% else %}
+<p>Nothing to check.</p>
+{% endif %}
